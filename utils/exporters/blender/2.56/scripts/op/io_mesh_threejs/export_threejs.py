@@ -692,9 +692,13 @@ def extract_materials(mesh, scene):
                                          m.specular_intensity * m.specular_color[1],
                                          m.specular_intensity * m.specular_color[2]]
 
-            material['colorAmbient'] = [m.ambient * world.ambient_color[0],
-                                        m.ambient * world.ambient_color[1],
-                                        m.ambient * world.ambient_color[2]]
+            world_ambient_color = [0, 0, 0]
+            if world:
+                world_ambient_color = world.ambient_color
+                
+            material['colorAmbient'] = [m.ambient * world_ambient_color[0],
+                                        m.ambient * world_ambient_color[1],
+                                        m.ambient * world_ambient_color[2]]
 
             material['transparency'] = m.alpha
 
@@ -1083,9 +1087,13 @@ def extract_material_data(m):
                                  m.specular_intensity * m.specular_color[1],
                                  m.specular_intensity * m.specular_color[2]]
 
-    material['colorAmbient'] = [m.ambient * world.ambient_color[0],
-                                m.ambient * world.ambient_color[1],
-                                m.ambient * world.ambient_color[2]]
+    world_ambient_color = [0, 0, 0]
+    if world:
+        world_ambient_color = world.ambient_color
+        
+    material['colorAmbient'] = [m.ambient * world_ambient_color[0],
+                                m.ambient * world_ambient_color[1],
+                                m.ambient * world_ambient_color[2]]
 
     material['transparency'] = m.alpha
 
